@@ -1,0 +1,14 @@
+{
+  "name": "node-react-chatbot",
+  "version": "1.0.0",
+  "description": "Node React Chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fernan de Dios",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
