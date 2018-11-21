@@ -1,13 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-  res.send({
-    'hello': 'world'
-  })
-});
+app.use(bodyParser.json());
+
+require('./routes/dialogFlowRoutes');
 
 app.listen(PORT, (err) => {
   if (err) console.log(err);
