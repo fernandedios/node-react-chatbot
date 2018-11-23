@@ -3,7 +3,7 @@
 
 > NodeJS Express, ReactJS, Diagflow
 
-ModeJS and ReactJS powered Chatbot Application
+NodeJS and ReactJS powered Chatbot Application
 
 
 Thanks
