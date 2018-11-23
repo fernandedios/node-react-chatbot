@@ -41,7 +41,7 @@ module.exports = {
     const request = {
       session: sessionPath,
       queryInput: {
-        text: {
+        event: {
           name: event,
           parameters: structjson.jsonToStructProto(parameters),
           languageCode: config.dialogFlowSessionLanguageCode
