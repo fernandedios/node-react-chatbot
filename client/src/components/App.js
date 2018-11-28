@@ -9,7 +9,7 @@ import Chatbot from './chatbot/Chatbot';
 
 const App = () => {
   return (
-    <div>
+    <div className="container">
       <BrowserRouter>
         <div>
           <Header />
