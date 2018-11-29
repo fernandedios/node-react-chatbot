@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios/index';
 
+import Message from './Message';
+
 class Chatbot extends Component {
   constructor(props) {
       super(props);
@@ -42,11 +44,23 @@ class Chatbot extends Component {
       }
   }
 
+  renderMessages(stateMessages) {
+    if (stateMessages) {
+      return stateMessages.map((message, i) => {
+        return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />
+      });
+    }
+    else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <div style={{ height: 400, width: 400, float: 'right'}}>
         <div id="chatbot" style={{ height: '100%', width: '100%', overflow: 'auto' }}>
           <h2>Chatbot</h2>
+          {this.renderMessages(this.state.messages)}
           <input type="text" />
         </div>
       </div>
