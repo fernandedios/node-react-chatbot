@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class Chatbot extends Component {
+  constructor(props) {
+      super(props);
+
+      this.state = { messages: [] };
+  }
+
   render() {
     return (
       <div style={{ height: 400, width: 400, float: 'right'}}>
