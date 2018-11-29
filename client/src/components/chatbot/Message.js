@@ -5,27 +5,31 @@ const Message = (props) => {
     <div className="col s12 offset-m8 offset-l3">
       <div className="card-panel gray lighten-5 z-depth-1">
         <div className="row valiign-wrapper">
-          {props.speaks ==='bot' &&
+
+          {props.speaks === 'bot' &&
           <div className="col s2">
             <a className="btn-floating btn-large waves-effect waves-light red">
               {props.speaks}
             </a>
           </div>
           }
+
           <div className="col s10">
             <span className="black-text">
               {props.text}
             </span>
           </div>
-          {props.speaks ==='me' &&
+
+          {props.speaks === 'me' &&
           <div className="col s2">
             <a className="btn-floating btn-large waves-effect waves-light red">
               {props.speaks}
             </a>
           </div>
           }
+
         </div>
-      <div>
+      </div>
     </div>
   );
 }

@@ -22,8 +22,8 @@ class Chatbot extends Component {
     const res = await axios.post('/api/df_text_query', { text });
 
     for (let msg of res.data.fullfillmentMessages) {
-        says: {
-          speaksL 'bot',
+        says = {
+          speaks: 'bot',
           msg
         }
 
@@ -34,7 +34,7 @@ class Chatbot extends Component {
   async df_event_query(event) {
       const res = await axios.post('/api/df_event_query', { event });
 
-      for (let msg of fes.data.fullfillmentMessages) {
+      for (let msg of res.data.fullfillmentMessages) {
         let says = {
           speaks: 'me',
           msg
