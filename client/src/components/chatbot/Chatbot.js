@@ -10,6 +10,10 @@ class Chatbot extends Component {
       this.state = { messages: [] };
   }
 
+  componentDidMount() {
+    this.df_event_query('welcome');
+  }
+
   async df_text_query(text) {
     let says = {
       speaks: 'me',
