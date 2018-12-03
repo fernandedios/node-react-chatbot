@@ -4,6 +4,7 @@ import axios from 'axios/index';
 import Message from './Message';
 
 class Chatbot extends Component {
+  messagesEnd;
   constructor(props) {
       super(props);
 
@@ -13,6 +14,10 @@ class Chatbot extends Component {
 
   componentDidMount() {
     this.df_event_query('welcome');
+  }
+
+  componentDidUpdate() {
+    this.messagesEnd.scrollIntoView({ behaviour: "smooth" });
   }
 
   async df_text_query(text) {
@@ -73,6 +78,9 @@ class Chatbot extends Component {
         <div id="chatbot" style={{ height: '100%', width: '100%', overflow: 'auto' }}>
           <h2>Chatbot</h2>
           {this.renderMessages(this.state.messages)}
+          <div ref={(el) => { this.messagesEnd = el }}
+            style={{ float: "left", clear: "both" }}>
+          </div>
           <input type="text" onKeyPress={this.handleInputKeyPress} />
         </div>
       </div>
