@@ -49,12 +49,14 @@ class Chatbot extends Component {
     const res = await axios.post('/api/df_text_query', { text, userID });
 
     for (let msg of res.data.fulfillmentMessages) {
-        says = {
-          speaks: 'bot',
-          msg
-        }
+      console.log(JSON.stringify(msg));
 
-        this.setState({ messages: [ ...this.state.messages, says ] });
+      says = {
+        speaks: 'bot',
+        msg
+      }
+
+      this.setState({ messages: [ ...this.state.messages, says ] });
     }
   }
 
@@ -76,7 +78,12 @@ class Chatbot extends Component {
     // render messages from bot and user
     if (stateMessages) {
       return stateMessages.map((message, i) => {
-        return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />
+        if (message.msg && message.msg.text && message.msg.text.text) {
+          return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />
+        }
+        else {
+          return <h2>Cards</h2>
+        }
       });
     }
     else {
