@@ -5,6 +5,8 @@ import Message from './Message';
 
 class Chatbot extends Component {
   messagesEnd;
+  textInput;
+
   constructor(props) {
       super(props);
 
@@ -14,6 +16,7 @@ class Chatbot extends Component {
 
   componentDidMount() {
     this.df_event_query('welcome');
+    this.textInput.focus();
   }
 
   componentDidUpdate() {
@@ -81,7 +84,7 @@ class Chatbot extends Component {
           <div ref={(el) => { this.messagesEnd = el }}
             style={{ float: "left", clear: "both" }}>
           </div>
-          <input type="text" onKeyPress={this.handleInputKeyPress} />
+          <input ref={(el) => { this.textInput = el }} type="text" onKeyPress={this.handleInputKeyPress} />
         </div>
       </div>
     );
