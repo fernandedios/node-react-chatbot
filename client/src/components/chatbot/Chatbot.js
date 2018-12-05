@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios/index';
+import Cookies from 'universal-cookie';
+import { v4 as uuid } from 'uuid';
 
 import Message from './Message';
+
+const cookies = new Cookies();
 
 class Chatbot extends Component {
   messagesEnd;
@@ -12,6 +16,12 @@ class Chatbot extends Component {
 
       this.state = { messages: [] };
       this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
+
+      if (cookies.get('userID') === undefined) {
+          cookies.set('userID', uuid(), { path: '/' });
+      }
+
+      console.log(cookies.get('userID'));
   }
 
   componentDidMount() {
@@ -31,8 +41,9 @@ class Chatbot extends Component {
       }
     };
 
-    this.setState({ messages: [ ...this.state.messages, says ] })
-    const res = await axios.post('/api/df_text_query', { text });
+    this.setState({ messages: [ ...this.state.messages, says ] });
+    const userID = cookies.get('userID');
+    const res = await axios.post('/api/df_text_query', { text, userID });
 
     for (let msg of res.data.fulfillmentMessages) {
         says = {
@@ -45,16 +56,17 @@ class Chatbot extends Component {
   }
 
   async df_event_query(event) {
-      const res = await axios.post('/api/df_event_query', { event });
+    const userID = cookies.get('userID');
+    const res = await axios.post('/api/df_event_query', { event, userID });
 
-      for (let msg of res.data.fulfillmentMessages) {
-        let says = {
-          speaks: 'bot',
-          msg
-        }
-
-        this.setState({ messages: [ ...this.state.messages, says ]});
+    for (let msg of res.data.fulfillmentMessages) {
+      let says = {
+        speaks: 'bot',
+        msg
       }
+
+      this.setState({ messages: [ ...this.state.messages, says ]});
+    }
   }
 
   renderMessages(stateMessages) {
