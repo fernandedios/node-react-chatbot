@@ -8,9 +8,9 @@ const Message = (props) => {
 
           {props.speaks === 'bot' &&
           <div className="col s2">
-            <a href="#" className="btn-floating btn-large waves-effect waves-light red">
+            <button className="btn-floating btn-large waves-effect waves-light red">
               {props.speaks}
-            </a>
+            </button>
           </div>
           }
 
@@ -22,9 +22,9 @@ const Message = (props) => {
 
           {props.speaks === 'me' &&
           <div className="col s2">
-            <a href="#" className="btn-floating btn-large waves-effect waves-light red">
+            <button className="btn-floating btn-large waves-effect waves-light red">
               {props.speaks}
-            </a>
+            </button>
           </div>
           }
 
