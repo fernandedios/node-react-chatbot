@@ -12,25 +12,28 @@ class Chatbot extends Component {
   textInput;
 
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = { messages: [] };
-      this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
+    this.state = { messages: [] };
+    this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
 
-      if (cookies.get('userID') === undefined) {
-          cookies.set('userID', uuid(), { path: '/' });
-      }
+    // if cookies is not set yet, generate a new cookie
+    if (cookies.get('userID') === undefined) {
+        cookies.set('userID', uuid(), { path: '/' });
+    }
 
-      console.log(cookies.get('userID'));
+    console.log(cookies.get('userID'));
   }
 
   componentDidMount() {
+    // welcome message from bot
     this.df_event_query('welcome');
-    this.textInput.focus();
   }
 
   componentDidUpdate() {
+    // scroll to last message and return focus to input
     this.messagesEnd.scrollIntoView({ behaviour: "smooth" });
+    this.textInput.focus();
   }
 
   async df_text_query(text) {
@@ -70,6 +73,7 @@ class Chatbot extends Component {
   }
 
   renderMessages(stateMessages) {
+    // render messages from bot and user
     if (stateMessages) {
       return stateMessages.map((message, i) => {
         return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />
