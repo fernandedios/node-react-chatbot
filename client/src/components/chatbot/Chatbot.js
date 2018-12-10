@@ -74,16 +74,36 @@ class Chatbot extends Component {
     }
   }
 
+  renderOneMessage(message, i) {
+    if (message.msg && message.msg.text && message.msg.text.text) {
+      return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />
+    }
+    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.cards){
+      return (
+        <div key={{i}}>
+          <div className="card-panel grey lighten-5 z-depth-1">
+            <div style={{ overflow: 'hidden' }}>
+            <div className="col s2">
+              <button className="btn-floating btn-large waves-effect waves-light red">
+                {message.speaks}
+              </button>
+
+              <div style={{ overflow: 'auto', overflowY: 'scroll' }}>
+                <div style={{ height: '300px', width: message.msg.payload.fields.cards.listValue.values.length * 270 }}
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   renderMessages(stateMessages) {
     // render messages from bot and user
     if (stateMessages) {
       return stateMessages.map((message, i) => {
-        if (message.msg && message.msg.text && message.msg.text.text) {
-          return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />
-        }
-        else {
-          return <h2>Cards</h2>
-        }
+        return this.renderOneMessage(message, i);
       });
     }
     else {
