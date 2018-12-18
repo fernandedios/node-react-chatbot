@@ -131,7 +131,7 @@ class Chatbot extends Component {
       <div style={{ height: 500, width: 400, position: 'absolute', bottom: 0, right: 0, border: '1px solid lightgrey' }}>
         <nav>
           <div className="nav-wrapper">
-            <a className="brand-logo">ChatBot</a>
+            <button className="brand-logo">ChatBot</button>
           </div>
         </nav>
         <div id="chatbot" style={{ height: '388px', width: '100%', overflow: 'auto' }}>

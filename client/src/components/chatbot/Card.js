@@ -6,7 +6,7 @@ const Card = (props) => {
     <div style={{ float: 'left', paddingRight: '30px', width: '270px' }}>
       <div className="card">
         <div className="card-image">
-          <img style={{ width: '240px'}} src={image.stringValue} />
+          <img style={{ width: '240px'}} src={image.stringValue} alt="Card Img" />
           <span className="card-title">{header.stringValue}</span>
           <p>{price.stringValue}</p>
         </div>
