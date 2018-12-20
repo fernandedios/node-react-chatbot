@@ -17,6 +17,7 @@ class Chatbot extends Component {
 
     this.state = { messages: [] };
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
+    this._handleQuickReplayPayload = this._handleQuickReplyPayload.bind(this);
 
     // if cookies is not set yet, generate a new cookie
     if (cookies.get('userID') === undefined) {
@@ -35,6 +36,10 @@ class Chatbot extends Component {
     // scroll to last message and return focus to input
     this.messagesEnd.scrollIntoView({ behaviour: "smooth" });
     this.textInput.focus();
+  }
+
+  _handleQuickReplyPayload(payload, text) {
+    this.df_text_query(text);
   }
 
   async df_text_query(text) {
